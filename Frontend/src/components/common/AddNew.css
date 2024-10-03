@@ -1,0 +1,28 @@
+.add-button {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #b0a7a7;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 800;
+}
+
+.add-button:hover {
+    color: rgb(29, 29, 59);
+    background: rgb(67, 170, 161);
+}
+
+.add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}

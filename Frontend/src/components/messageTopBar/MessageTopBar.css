@@ -1,0 +1,49 @@
+/* MessageBox Css*/
+.messageTopbar {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.messageTopbar:hover{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.profileAndinfo {
+  display: flex;
+  gap: 1rem;
+}
+
+.friendProfileImg {
+  position: relative;
+}
+
+.friendProfileInfo{
+  color: white;
+  font-size: medium;
+}
+
+.friendProfileInfo p{
+  color: #5f5c5c;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+.callingOptions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.callingButton {
+  min-width: 3rem;
+  /* Reserve space for hover */
+  min-height: 0.8rem;
+  margin-bottom: 0;
+}

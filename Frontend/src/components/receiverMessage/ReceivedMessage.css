@@ -1,0 +1,31 @@
+.receivedMessage {
+  background-color: #ffffff; /* White bubble for received messages */
+  color: #000; /* Black text */
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 10px;
+  display: inline-block; /* Allows the bubble to only take the content width */
+  max-width: 70%; /* Limit the width based on layout */
+  word-wrap: break-word; /* Ensures long words wrap to the next line */
+  font-size: 14px;
+  position: relative;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15); /* Adds a subtle shadow */
+}
+
+/* Add a small arrow-like tail to the message */
+.receivedMessage::before {
+  content: "";
+  position: absolute;
+  left: -5px; /* Adjust to position the tail */
+  top: 10px;
+  width: 0;
+  height: 0;
+  border-right: 10px solid #ffffff; /* White arrow */
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+.receivedMessageContainer{
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px;
+}

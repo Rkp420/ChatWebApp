@@ -1,0 +1,45 @@
+.add-friend-model {
+  width: 25%;
+  height: 80%;
+  margin-left: 6rem;
+  position: relative;
+  background-color: #24272e;
+  padding: 2rem;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0px 2px 19px 5px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 0px 2px 19px 5px rgba(0, 0, 0, 0.58);
+  box-shadow: 0px 2px 19px 5px rgba(0, 0, 0, 0.58);
+}
+
+.userList {
+  margin-top: 1rem;
+  padding: 0.4rem;
+  height: 90%; /* Or you can use max-height */
+  overflow-y: auto;
+  scroll-behavior: smooth; /* Change to auto to show the scrollbar only when needed */
+}
+
+.listing{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+}
+
+::-webkit-scrollbar {
+  width: 0.2rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #5b5b5b;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(127 123 123);
+}
+
+.closeModel{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}

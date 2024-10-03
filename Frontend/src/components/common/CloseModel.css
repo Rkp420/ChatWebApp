@@ -1,0 +1,27 @@
+.closeButton {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #b0a7a7;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  cursor: pointer;
+}
+.closeButton:hover {
+  color: rgb(29, 29, 59);
+  background: rgb(67, 170, 161);
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}

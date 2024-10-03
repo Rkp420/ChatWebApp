@@ -1,0 +1,11 @@
+
+.friendList{
+  margin-top: 1.5rem;
+  height: 37rem; /* Or you can use max-height */
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.listing {
+  margin-bottom: 1rem;
+}

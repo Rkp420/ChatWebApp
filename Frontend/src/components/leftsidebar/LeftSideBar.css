@@ -1,0 +1,98 @@
+
+.myProfile {
+    flex: 1;
+    background-color: rgb(27, 26, 26);
+    border-radius: 29px 0px 0px 29px;
+    border: none;
+}
+
+.myProfileWrapper {
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profileImg {
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.myProfileImg {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.onlineBar {
+    height: 13px;
+    width: 13px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: rgb(110, 181, 4);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.myProfileMenu {
+    margin: 45px 0px 45px 0px;
+}
+
+.menuItems {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.settingOption {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon-button {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 10px;
+    /* Default border radius */
+    transition: all 0.3s ease;
+    /* Smooth transition for size, color, and radius */
+    min-width: 4rem;
+    /* Reserve space for hover */
+    min-height: 1.8rem;
+    /* Reserve space for hover */
+}
+
+.icons {
+    font-size: 22px;
+    color: #9da0a4;
+}
+
+.icon-button:hover {
+    background-color: rgb(174, 151, 151);
+    border-radius: 15px;
+}
+
+.icon-button:hover .icons{
+    color: black;
+}
+
+.icon-button.active {
+    background-color: rgb(174, 151, 151);
+    border-radius: 15px;
+}
+
+.icon-button.active .icons {
+    color: black;
+}

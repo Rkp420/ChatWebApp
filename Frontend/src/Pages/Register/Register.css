@@ -1,0 +1,41 @@
+.registerPage{
+    background-color: white;
+    width: 400px;
+    position: absolute;
+    top: 20%;
+    left: auto;
+    border-radius: 18px;
+}
+
+.registerPageWrapper{
+    margin: 15px;
+    text-align: center;
+}
+
+.heading{
+    color: rgba(83, 60, 60, 0.919);
+    margin-bottom: 20px;
+}
+
+.inputField{
+    display: block;
+    width: 100%;
+    padding-left: 4px;
+    margin-bottom: 20px;
+    height: 40px;
+    font-size: 15px;
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+
+.submitButton{
+    display: block;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    color: white;
+    background-color: rgba(15, 15, 181, 0.81);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

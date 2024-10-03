@@ -1,0 +1,32 @@
+.homepage{
+    flex-direction: column;
+    align-items: center;
+}
+.title{
+    color: white;
+}
+.logininfo p{
+    color: brown;
+}
+
+.buttons{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn{
+    background-color: rgba(17, 17, 241, 0.935);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+}
+
+.btn:hover{
+    opacity: 50%;
+    color: grey;
+}

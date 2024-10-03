@@ -1,0 +1,173 @@
+.middlePart {
+    flex: 3;
+    border-right: 1px solid rgb(216, 211, 211);
+    background-color: #1a1b1ceb;
+}
+.middlePartWrapper {
+    max-height: 100%;
+    padding: 1rem;
+    position: relative;
+}
+
+/** Friend List , Group List and Archives List */
+.someList{
+  margin-top: 1.5rem;
+  height: 37rem; /* Or you can use max-height */
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.listing {
+  margin-bottom: 1rem;
+}
+
+.listBox {
+  width: 100%;
+  height: 5rem;
+  padding: 0.4rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(40 38 38);
+  color: white;
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 10px -1px rgba(82, 74, 82, 1);
+  -moz-box-shadow: 4px 4px 10px -1px rgba(82, 74, 82, 1);
+  box-shadow: 4px 4px 10px -1px rgba(82, 74, 82, 1);
+  cursor: pointer;
+}
+
+.selected-listBox {
+  width: 100%;
+  height: 5rem;
+  padding: 0.4rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(6, 6, 6);
+  color: white;
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 10px -1px rgba(82, 74, 82, 1);
+  -moz-box-shadow: 4px 4px 10px -1px rgba(82, 74, 82, 1);
+  box-shadow: 4px 4px 10px -1px rgba(82, 74, 82, 1);
+  cursor: pointer;
+}
+.someStyle{
+  display: flex;
+}
+
+.imageSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.6rem;
+}
+
+.image {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.optionsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.option-button {
+  height: 2rem;
+  width: 1.3rem;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.option-button:hover {
+  background-color: rgb(149, 147, 147);
+  border-radius: 0.3rem;
+}
+
+.option-button:hover .threeDot {
+  color: black;
+}
+
+.option-button.active {
+  background-color: rgb(149, 147, 147);
+  border-radius: 4rem;
+}
+
+.option-button.active .threeDot {
+  color: black;
+}
+
+.threeDot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #c6d0dd;
+}
+
+.value {
+  border: 4px solid rgb(67, 170, 161);
+  height: 1.9rem;
+  width: 1.9rem;
+  border-radius: 50%;
+  color: #c3c6d1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoSection {
+  letter-spacing: 0.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-left: 0.7rem;
+}
+
+.info {
+  margin-top: 0.6rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.infoSection h3 {
+  color: white;
+  font-size: medium;
+}
+.infoSection p {
+  color: #726060;
+  font-size: small;
+}
+.incomming-message {
+  width: 100%;
+  color: #726060;
+  font-size: small;
+}
+
+.style{
+  height: 100%;
+  background-color: aqua;
+  width: 3px;
+}
+
+.selected-listBox .style {
+  visibility: visible;
+}
+
+.listBox .style{
+  visibility: hidden;
+}
+

@@ -1,0 +1,31 @@
+.sentMessage {
+  background-color: #dcf8c6; /* Light green bubble for sent messages */
+  color: #000; /* Black text */
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 10px;
+  display: inline-block; /* Only takes the width of the content */
+  max-width: 70%; /* Limit the width based on layout */
+  word-wrap: break-word; /* Ensures long words wrap to the next line */
+  font-size: 14px;
+  position: relative;
+  align-self: flex-end; /* Aligns the message bubble to the right */
+}
+
+/* Add a small arrow-like tail to the sent message */
+.sentMessage::after {
+  content: "";
+  position: absolute;
+  right: -5px; /* Tail aligned to the right */
+  top: 10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid #dcf8c6;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+.messageContainer {
+  display: flex;
+  justify-content: flex-end; /* Aligns sent messages to the right */
+  margin: 10px;
+}
