@@ -4,10 +4,9 @@ import { BiSolidUserVoice } from "react-icons/bi";
 import { useModel } from "../../provider/ModelProvider";
 import { useMySocket } from "../../context/SocketContext";
 import { useEffect, useState } from "react";
-import { useUserContext } from "../../context/Usercontext";
 
-export default function MessageTopBar() {
-  const { selectedConversation, conversationType } = useUserContext();
+
+export default function MessageTopBar({ receiver, typeOfReceiver }) {
   const { openModel } = useModel();
   const { onlineFriends } = useMySocket();
   const [isOnline, setIsOnline] = useState(false);
@@ -30,24 +29,24 @@ export default function MessageTopBar() {
           <img
             className="myProfileImg"
             src={
-              conversationType === "IndividualConversation"
-                ? selectedConversation?.receiver?.profile
-                : selectedConversation?.group?.profile
+              typeOfReceiver === "IndividualConversation"
+                ? receiver?.profile
+                : receiver?.group?.profile
             }
             alt="gandu"
           />
           <span className="onlineBar"></span>
         </div>
         <div className="friendProfileInfo">
-          {conversationType === "IndividualConversation" ? (
+          {typeOfReceiver === "IndividualConversation" ? (
             <div>
-              <h3>{selectedConversation?.receiver?.username}</h3>
+              <h3>{receiver?.username}</h3>
               {isOnline ? <p>Online</p> : <p>Offline</p>}
             </div>
           ) : (
             <div>
-              <h3>{selectedConversation?.group?.groupname}</h3>
-              <p>{selectedConversation?.group?.bio}</p>
+              <h3>{receiver?.group?.groupname}</h3>
+              <p>{receiver?.group?.bio}</p>
             </div>
           )}
         </div>

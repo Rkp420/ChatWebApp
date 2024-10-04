@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useUserContext } from "../../context/Usercontext";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-export default function Friend({ conversation }) {
+export default function Friend({ conversation, receiver }) {
   const {
     selectedConversation,
     setSelectedConversation,
@@ -20,6 +20,7 @@ export default function Friend({ conversation }) {
     setIsUserOnRight(false);
     setSelectedConversation(conversation);
     setConversationType("IndividualConversation");
+    console.log(conversation.messageBatch)
     setMessagesBatch(conversation.messageBatch);
   };
 
@@ -39,15 +40,11 @@ export default function Friend({ conversation }) {
       <div className="someStyle">
         <span className="style"></span>
         <div className="imageSection">
-          <img
-            src={conversation?.receiver?.profile}
-            alt="Image"
-            className="image"
-          />
+          <img src={receiver?.profile} alt="Image" className="image" />
         </div>
         <div className="infoSection">
           <div className="info">
-            <h3>{conversation?.receiver?.username}</h3>
+            <h3>{receiver?.username}</h3>
             {isOnline ? <p>Online</p> : <p>Offline</p>}
           </div>
           <p className="incomming-message">Aji Land Mera</p>

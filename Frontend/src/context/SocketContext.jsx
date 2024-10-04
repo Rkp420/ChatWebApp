@@ -5,29 +5,77 @@ import { useUserContext } from "./Usercontext";
 const SocketContext = createContext(null);
 
 export const SocketProvider = ({ children }) => {
-  const { user, setMessagesBatch, conversationType, selectedConversation } =
-    useUserContext();
+  const {
+    user,
+    setMessagesBatch,
+    conversationType,
+    selectedConversation,
+    setIndividualConversations,
+    setGroupConversations,
+  } = useUserContext();
   const [socket, setSocket] = useState(null);
   const [onlineFriends, setOnlineFriends] = useState([]);
 
-  const handleReceiveMessage = ({ newlyCreatedMessage, conversationId }) => {
+  const handleReceiveMessage = ({
+    newlyCreatedMessage,
+    conversationId,
+    conversationType,
+  }) => {
     console.log("Received message:", newlyCreatedMessage);
 
     if (selectedConversation?._id === conversationId) {
       setMessagesBatch((prevBatch) => {
-        // Check if `prevBatch` exists and has a `messages` array
-        if (!prevBatch || !prevBatch.messages) {
-          return prevBatch; // Prevent any errors if prevBatch is undefined
-        }
+        const updatedMessages = prevBatch?.messages
+          ? [...prevBatch.messages, newlyCreatedMessage]
+          : [newlyCreatedMessage];
 
-        // Return a new messageBatch object with the updated messages array
         return {
           ...prevBatch,
-          messages: [...prevBatch.messages, newlyCreatedMessage], // Add the new message
+          messages: updatedMessages,
         };
       });
     } else {
-      console.log("I will handle these");
+      // Updating Individual Conversations
+      if (conversationType === "IndividualConversation") {
+        setIndividualConversations((prevConversations) => {
+          return prevConversations.map((conv) =>
+            conv._id === conversationId
+              ? {
+                  ...conv,
+                  messageBatch: {
+                    ...conv.messageBatch,
+                    messages: [
+                      ...(conv.messageBatch?.messages ?? []),
+                      newlyCreatedMessage,
+                    ],
+                  },
+                }
+              : conv
+          );
+        });
+      }
+
+      // Updating Group Conversations
+      else if (conversationType === "GroupConversation") {
+        setGroupConversations((prevConversations) => {
+          return prevConversations.map((conv) =>
+            conv._id === conversationId
+              ? {
+                  ...conv,
+                  messageBatch: {
+                    ...conv.messageBatch,
+                    messages: [
+                      ...(conv.messageBatch?.messages ?? []),
+                      newlyCreatedMessage,
+                    ],
+                  },
+                }
+              : conv
+          );
+        });
+      } else {
+        console.log("Conversation Type is missing");
+      }
     }
   };
 

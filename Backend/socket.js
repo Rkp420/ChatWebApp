@@ -230,6 +230,7 @@ module.exports = function setUpSocket(server) {
               io.to(socketId).emit("receiveMessage", {
                 newlyCreatedMessage,
                 conversationId: conversation._id,
+                conversationType,
               });
             });
         }
@@ -240,6 +241,7 @@ module.exports = function setUpSocket(server) {
             io.to(socketId).emit("receiveMessage", {
               newlyCreatedMessage,
               conversationId: conversation._id,
+              conversationType,
             });
           });
         }
@@ -266,6 +268,7 @@ module.exports = function setUpSocket(server) {
           io.to(socketId).emit("receiveMessage", {
             newlyCreatedMessage,
             conversationId: conversation._id,
+            conversationType,
           });
         });
 
@@ -274,6 +277,7 @@ module.exports = function setUpSocket(server) {
           io.to(senderSocketId).emit("receiveMessage", {
             newlyCreatedMessage,
             conversationId: conversation._id,
+            conversationType,
           });
         }
       }
