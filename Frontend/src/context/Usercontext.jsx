@@ -12,7 +12,7 @@ export const UserContextProvider = ({ children }) => {
   const [isUserOnRight, setIsUserOnRight] = useState(true);
   const [currentView, setCurrentView] = useState("Friends"); // Default to "archives"
   const [conversationMap, setConversationMap] = useState(new Map());
-  const [archivedConversations, setArchivedConversation] = useState([]);
+  const [archivedConversations, setArchivedConversations] = useState([]);
 
   const contextValue = useMemo(
     () => ({
@@ -35,7 +35,7 @@ export const UserContextProvider = ({ children }) => {
       conversationMap,
       setConversationMap,
       archivedConversations,
-      setArchivedConversation,
+      setArchivedConversations,
     }),
     [
       user,
