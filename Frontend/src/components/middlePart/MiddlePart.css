@@ -1,16 +1,16 @@
 .middlePart {
-    flex: 3;
-    border-right: 1px solid rgb(216, 211, 211);
-    background-color: #1a1b1ceb;
+  flex: 3;
+  border-right: 1px solid rgb(216, 211, 211);
+  background-color: #1a1b1ceb;
 }
 .middlePartWrapper {
-    max-height: 100%;
-    padding: 1rem;
-    position: relative;
+  max-height: 100%;
+  padding: 1rem;
+  position: relative;
 }
 
 /** Friend List , Group List and Archives List */
-.someList{
+.someList {
   margin-top: 1.5rem;
   height: 37rem; /* Or you can use max-height */
   overflow-y: auto;
@@ -28,6 +28,7 @@
   border-radius: 1rem;
   overflow: hidden;
   display: flex;
+  position: relative;
   justify-content: space-between;
   background-color: rgb(40 38 38);
   color: white;
@@ -48,13 +49,14 @@
   justify-content: space-between;
   background-color: rgb(6, 6, 6);
   color: white;
+  position: relative;
   border-radius: 8px;
   -webkit-box-shadow: 4px 4px 10px -1px rgba(82, 74, 82, 1);
   -moz-box-shadow: 4px 4px 10px -1px rgba(82, 74, 82, 1);
   box-shadow: 4px 4px 10px -1px rgba(82, 74, 82, 1);
   cursor: pointer;
 }
-.someStyle{
+.someStyle {
   display: flex;
 }
 
@@ -89,7 +91,7 @@
 }
 
 .option-button:hover {
-  background-color: rgb(149, 147, 147);
+  background-color: rgba(108, 108, 108, 0.879);
   border-radius: 0.3rem;
 }
 
@@ -99,7 +101,7 @@
 
 .option-button.active {
   background-color: rgb(149, 147, 147);
-  border-radius: 4rem;
+  border-radius: 0.3rem;
 }
 
 .option-button.active .threeDot {
@@ -157,7 +159,7 @@
   font-size: small;
 }
 
-.style{
+.style {
   height: 100%;
   background-color: aqua;
   width: 3px;
@@ -167,7 +169,6 @@
   visibility: visible;
 }
 
-.listBox .style{
+.listBox .style {
   visibility: hidden;
 }
-

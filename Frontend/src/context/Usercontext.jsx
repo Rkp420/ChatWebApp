@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useMemo,
-  useEffect,
-} from "react";
+import React, { createContext, useContext, useState, useMemo } from "react";
 
 const UserContext = createContext();
 
@@ -17,6 +11,8 @@ export const UserContextProvider = ({ children }) => {
   const [messagesBatch, setMessagesBatch] = useState([]);
   const [isUserOnRight, setIsUserOnRight] = useState(true);
   const [currentView, setCurrentView] = useState("Friends"); // Default to "archives"
+  const [conversationMap, setConversationMap] = useState(new Map());
+  const [archivedConversations, setArchivedConversation] = useState([]);
 
   const contextValue = useMemo(
     () => ({
@@ -36,6 +32,10 @@ export const UserContextProvider = ({ children }) => {
       setGroupConversations,
       currentView,
       setCurrentView,
+      conversationMap,
+      setConversationMap,
+      archivedConversations,
+      setArchivedConversation,
     }),
     [
       user,
@@ -46,6 +46,8 @@ export const UserContextProvider = ({ children }) => {
       individualConversations, // and this here
       groupConversations,
       currentView,
+      conversationMap,
+      archivedConversations,
     ]
   );
   return (

@@ -15,7 +15,7 @@ const groupConversationSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    archived: {
+    isArchived: {
       type: Boolean,
       default: false, // Indicates if the conversation is archived
     },

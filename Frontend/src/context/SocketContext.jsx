@@ -10,8 +10,12 @@ export const SocketProvider = ({ children }) => {
     setMessagesBatch,
     conversationType,
     selectedConversation,
+    individualConversations,
     setIndividualConversations,
+    groupConversations,
     setGroupConversations,
+    setConversationMap,
+    setArchivedConversations,
   } = useUserContext();
   const [socket, setSocket] = useState(null);
   const [onlineFriends, setOnlineFriends] = useState([]);
@@ -73,11 +77,56 @@ export const SocketProvider = ({ children }) => {
               : conv
           );
         });
+        setConversationMap((prevMap) => {
+          const newMap = new Map(prevMap); // Clone the previous state
+
+          const prevData = newMap.get(conversationId);
+          const newValue = prevData ? prevData.value + 1 : 1; // Increment value if exists, otherwise start at 1
+
+          newMap.set(conversationId, {
+            value: newValue,
+            message: newlyCreatedMessage.content,
+          }); // Set the updated value and message
+          return newMap;
+        });
       } else {
         console.log("Conversation Type is missing");
       }
     }
   };
+
+ const handleArchiveConversation = ({ conversationId, conversationType }) => {
+   let conversation;
+   if (conversationType === "IndividualConversations") {
+     // Find and archive the individual conversation
+     conversation = individualConversations.find(
+       (individualConversation) => individualConversation._id === conversationId
+     );
+     // Remove the archived conversation from the list
+     setIndividualConversations((prev) =>
+       prev.filter(
+         (individualConversation) =>
+           individualConversation._id !== conversationId
+       )
+     );
+   } else if (conversationType === "GroupConversations") {
+     // Find and archive the group conversation
+     conversation = groupConversations.find(
+       (groupConversation) => groupConversation._id === conversationId
+     );
+     // Remove the archived conversation from the list
+     setGroupConversations((prev) =>
+       prev.filter(
+         (groupConversation) => groupConversation._id !== conversationId
+       )
+     );
+   }
+
+   // Add the archived conversation to the archived conversations array
+   if (conversation) {
+     setArchivedConversations((prev) => [...prev, conversation]);
+   }
+ };
 
   useEffect(() => {
     let newSocket;
@@ -94,6 +143,7 @@ export const SocketProvider = ({ children }) => {
       newSocket.on("messageNotSent", () => {
         console.log("There is an error during Message Sent");
       });
+      newSocket.on("archive-made", handleArchiveConversation);
 
       newSocket.on("onlineFriends", (friends) => {
         console.log(friends);

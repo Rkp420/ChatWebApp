@@ -203,7 +203,7 @@ module.exports = function setUpSocket(server) {
         conversation: conversation._id,
         conversationModel: conversationType,
       });
-      
+
       if (!messageBatch) {
         throw new Error("MessageBatch is not available");
       }
@@ -286,6 +286,50 @@ module.exports = function setUpSocket(server) {
     }
   };
 
+  const makeConversationArchive = async ({
+    userId,
+    conversationId,
+    conversationType,
+  }) => {
+    try {
+      let conversation;
+
+      // Fetch conversation based on type
+      if (conversationType === "IndividualConversation") {
+        conversation = await IndividualConversation.findById(conversationId);
+      } else if (conversationType === "GroupConversation") {
+        conversation = await GroupConversation.findById(conversationId);
+      } else {
+        throw new Error("Invalid conversation type");
+      }
+
+      // Check if conversation exists
+      if (!conversation) {
+        throw new Error("Conversation does not exist");
+      }
+
+      // Archive the conversation
+      conversation.isArchived = true;
+      await conversation.save();
+
+      // Emit event to user's sockets
+      const senderSocketIds = activeSocketUsers.get(userId);
+
+      if (senderSocketIds && senderSocketIds.length > 0) {
+        for (let socketId of senderSocketIds) {
+          io.to(socketId).emit("archived-made", {
+            conversationId,
+            conversationType,
+          });
+        }
+      } else {
+        console.log(`No active socket connections for user: ${userId}`);
+      }
+    } catch (error) {
+      console.log("The Error in Archiving Conversation: ", error.message);
+    }
+  };
+
   io.on("connection", (socket) => {
     const userId = socket.handshake.query.userId;
 
@@ -299,6 +343,8 @@ module.exports = function setUpSocket(server) {
       console.log("user id not providng through backend");
     }
     socket.on("sendMessage", handleSendMessage);
+    socket.on("makeArchive", makeConversationArchive);
+    socket;
     socket.on("disconnect", () => {
       console.log("disconnected userId : ", userId, " socketId : ", socket.id);
       handleDisconnection(userId, socket.id);

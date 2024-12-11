@@ -3,16 +3,20 @@ import { useEffect, useState } from "react";
 import { useUserContext } from "../../context/Usercontext";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-export default function Group({ conversation }) {
+export default function Group({ conversation, isOpenOptions, onOpenOptions }) {
   const {
     selectedConversation,
     setSelectedConversation,
     setConversationType,
     setIsUserOnRight,
+    conversationMap,
   } = useUserContext();
 
   const [isSelected, setIsSelected] = useState(false);
-  const [value, setValue] = useState(null);
+  const valueAndMessage = conversationMap.get(conversation._id) || {
+    value: 0,
+    message: "",
+  };
 
   const onSelect = () => {
     setIsUserOnRight(false);
@@ -21,11 +25,16 @@ export default function Group({ conversation }) {
     setMessagesBatch(conversation.messageBatch);
   };
 
+  const handleClick = (e) => {
+    e.stopPropagation();
+    onOpenOptions(conversation._id);
+  };
+
   useEffect(() => {
     if (conversation && conversation._id === selectedConversation?._id) {
-      setIsSelected(true); // Mark this friend as selected if it matches the selected conversation
+      setIsSelected(true);
     } else {
-      setIsSelected(false); // Deselect it if the conversation doesn't match
+      setIsSelected(false);
     }
   }, [selectedConversation, conversation]);
 
@@ -48,17 +57,25 @@ export default function Group({ conversation }) {
             <h3>{conversation?.group?.groupname}</h3>
             <p>Moto : {conversation?.group?.moto}</p>
           </div>
-          <p className="incomming-message">Aji Land Mera</p>
+          {valueAndMessage.message && (
+            <p className="incomming-message">{valueAndMessage.message}</p>
+          )}
         </div>
       </div>
       <div className="optionsSection">
-        <button className="option-button">
+        <button
+          className={`option-button ${isOpenOptions ? "active" : ""}`}
+          onClick={handleClick}
+        >
           <i className="threeDot">
             <BsThreeDotsVertical />
           </i>
         </button>
-        {value && <div className="value">{value}</div>}
+        {valueAndMessage.value > 0 && (
+          <div className="value">{valueAndMessage.value}</div>
+        )}
       </div>
+      {isOpenOptions && <OpenOptionModel />}
     </div>
   );
 }

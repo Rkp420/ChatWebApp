@@ -146,11 +146,16 @@ module.exports.loginUser = async (req, res) => {
       })
       .exec();
 
+      const archivedIndConv = individualConversations.filter((individualConversation) => individualConversation.isArchived === true);
+      const archivedGrConv = groupConversations.filter((groupConversation) => groupConversation.isArchived)
+      const archivedConversations = archivedIndConv.concat(archivedGrConv);
+      
     // Send response with user details and conversations
     return res.cookie("token", newToken, { httpOnly: false }).status(200).json({
       user,
       individualConversations,
       groupConversations,
+      archivedConversations,
     });
   } catch (error) {
     console.error(error);
@@ -246,11 +251,19 @@ module.exports.getUserByToken = async (req, res) => {
       })
       .exec();
 
+      const archivedIndConv = individualConversations.filter(
+        (individualConversation) => individualConversation.isArchived === true
+      );
+      const archivedGrConv = groupConversations.filter(
+        (groupConversation) => groupConversation.isArchived
+      );
+      const archivedConversations = archivedIndConv.concat(archivedGrConv);
     if (user) {
       return res.status(200).json({
         user,
         individualConversations, // Return all individual conversations for the user
         groupConversations,
+        archivedConversations,
       });
     }
 

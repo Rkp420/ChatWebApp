@@ -1,15 +1,17 @@
 import "./App.css";
-import Register from "./Pages/Register/Register";
-import { Toaster } from "react-hot-toast";
+import { useCallback, useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import axios from "axios";
+
+import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Home from "./Pages/Home/Home";
-import { useUserContext } from "./context/Usercontext";
-import { useCallback, useEffect, useState } from "react";
 import PrivateRoute from "./utils/Privateroute";
-import { ModelProvider } from "./provider/ModelProvider";
+
+import { useUserContext } from "./context/Usercontext";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const {
@@ -19,7 +21,10 @@ function App() {
     setGroupConversations,
     individualConversations,
     groupConversations,
+    setArchivedConversations,
+    archivedConversations,
   } = useUserContext();
+  
   const [loading, setLoading] = useState(true);
 
   const getTokenFromCookies = useCallback(() => {
@@ -30,11 +35,12 @@ function App() {
 
   useEffect(() => {
     if (user && individualConversations && groupConversations) {
-      "User data updated:", user;
-      "Individual Conversations: ", individualConversations;
-      "Group Conversations: ", groupConversations;
+      console.log("User data updated:", user);
+      console.log("Individual Conversations: ", individualConversations);
+      console.log("Group Conversations: ", groupConversations);
+      console.log("Archived Conversations: ", archivedConversations);
     }
-  }, [user, individualConversations, groupConversations]);
+  }, [user, individualConversations, groupConversations, archivedConversations]);
 
   useEffect(() => {
     const token = getTokenFromCookies();
@@ -46,15 +52,16 @@ function App() {
           setUser(res.data.user);
           setIndividualConversations([...res.data.individualConversations]);
           setGroupConversations([...res.data.groupConversations]);
+          setArchivedConversations([...res.data.archivedConversations]);
         } catch (error) {
           console.error("Error fetching user data:", error);
         } finally {
-          setLoading(false); // Set loading to false once the request is completed
+          setLoading(false);
         }
       };
       fetchUser();
     } else {
-      setLoading(false); // Set loading to false if there's no token
+      setLoading(false);
     }
   }, [
     getTokenFromCookies,
