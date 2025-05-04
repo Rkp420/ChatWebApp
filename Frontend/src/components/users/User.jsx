@@ -39,9 +39,9 @@ export default function User({ userData }) {
     try {
       const conversationRes = isAlreadyExit
         ? await axios.delete(
-            `/api/delete/conversation/${user?._id}/${userData._id}`
+            `/api/v1/delete/conversation/${user?._id}/${userData._id}`
           )
-        : await axios.post("/api/new/conversation", data);
+        : await axios.post("/api/v1/new/conversation", data);
       console.log(conversationRes);
       if (conversationRes.status === 200) {
         const newConversations = !isAlreadyExit

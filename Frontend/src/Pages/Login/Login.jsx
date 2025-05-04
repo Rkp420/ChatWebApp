@@ -27,7 +27,7 @@ export default function Login() {
         email: email.current.value,
         password: password.current.value,
       };
-      const res = await axios.post("/api/login", logUser);
+      const res = await axios.post("/api/v1/login", logUser);
       if (res.status === 200) {
         console.log(res);
         setUser(res.data.user);

@@ -14,7 +14,7 @@ export default function AddFriend() {
 
   useEffect(() => {
     async function fetchUsers() {
-      const res = await axios.get(`/api/user/all/${user._id}`);
+      const res = await axios.get(`/api/v1/user/all/${user._id}`);
       if (res.data) {
         setAllUsers(res.data);
       } else {

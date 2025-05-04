@@ -47,7 +47,7 @@ function App() {
     if (token) {
       const fetchUser = async () => {
         try {
-          const res = await axios.get(`/api/user/${token}`);
+          const res = await axios.get(`/api/v1/user/${token}`);
           console.log(res);
           setUser(res.data.user);
           setIndividualConversations([...res.data.individualConversations]);

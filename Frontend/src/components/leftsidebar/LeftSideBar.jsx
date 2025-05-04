@@ -58,7 +58,7 @@ export default function LeftSideBar() {
   const logout = async () => {
     try {
       if (user) {
-        const res = await axios.get(`/api/logout`);
+        const res = await axios.get(`/api/v1/logout`);
         if (res.status === 200) {
           // Properly disconnect the socket
           if (socket) {

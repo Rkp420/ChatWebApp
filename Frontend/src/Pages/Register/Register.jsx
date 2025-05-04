@@ -26,7 +26,7 @@ export default function Register() {
             password: password.current.value,
           };
           // Ensure URL matches server-side route
-          const res = await axios.post("/api/register", newUser);
+          const res = await axios.post("/api/v1/register", newUser);
           if (res.status === 201) {
             email.current.value = "";
             username.current.value = "";

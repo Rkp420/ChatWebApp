@@ -26,7 +26,7 @@ export const UserContextProvider = ({ children }) => {
       setMessagesBatch,
       isUserOnRight,
       setIsUserOnRight,
-      individualConversations, // add this here
+      individualConversations,
       setIndividualConversations,
       groupConversations,
       setGroupConversations,
@@ -43,7 +43,7 @@ export const UserContextProvider = ({ children }) => {
       selectedConversation,
       messagesBatch,
       isUserOnRight,
-      individualConversations, // and this here
+      individualConversations,
       groupConversations,
       currentView,
       conversationMap,

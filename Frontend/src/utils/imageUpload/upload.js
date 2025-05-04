@@ -30,7 +30,7 @@ export const prepareImageFileAndUpload = async (
     }
 
     // Make the request
-    const res = await axios.post("/api/upload", formData);
+    const res = await axios.post("/api/v1/upload", formData);
 
     // Update user state or Group state
     if (type === "user")

@@ -1,9 +1,7 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require('bcryptjs');
-const path = require("path");
+const bcrypt = require("bcryptjs");
 const IndividualConversation = require("../models/IndividualConversation");
 const GroupConversation = require("../Models/GroupConversation");
-const MessageBatch = require("../Models/MessageBatch");
 const User = require("../Models/User");
 
 module.exports.registerUser = async (req, res) => {
@@ -71,9 +69,6 @@ module.exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    console.log("Email:", email);
-    console.log("Password (received):", password); // Log for debugging
-
     // Verify email and password
     const user = await User.findOne({ email });
 
@@ -81,10 +76,7 @@ module.exports.loginUser = async (req, res) => {
       return res.status(401).json({ msg: "Invalid email or password" });
     }
 
-    console.log("Stored password hash:", user.password); // Log for debugging (consider security implications)
-
     const isPassCorrect = await bcrypt.compare(password.trim(), user.password);
-    console.log("Password match (with rehash):", isPassCorrect);
 
     // If password is incorrect, return early
     if (!isPassCorrect) {
@@ -146,10 +138,14 @@ module.exports.loginUser = async (req, res) => {
       })
       .exec();
 
-      const archivedIndConv = individualConversations.filter((individualConversation) => individualConversation.isArchived === true);
-      const archivedGrConv = groupConversations.filter((groupConversation) => groupConversation.isArchived)
-      const archivedConversations = archivedIndConv.concat(archivedGrConv);
-      
+    const archivedIndConv = individualConversations.filter(
+      (individualConversation) => individualConversation.isArchived === true
+    );
+    const archivedGrConv = groupConversations.filter(
+      (groupConversation) => groupConversation.isArchived
+    );
+    const archivedConversations = archivedIndConv.concat(archivedGrConv);
+
     // Send response with user details and conversations
     return res.cookie("token", newToken, { httpOnly: false }).status(200).json({
       user,
@@ -251,13 +247,13 @@ module.exports.getUserByToken = async (req, res) => {
       })
       .exec();
 
-      const archivedIndConv = individualConversations.filter(
-        (individualConversation) => individualConversation.isArchived === true
-      );
-      const archivedGrConv = groupConversations.filter(
-        (groupConversation) => groupConversation.isArchived
-      );
-      const archivedConversations = archivedIndConv.concat(archivedGrConv);
+    const archivedIndConv = individualConversations.filter(
+      (individualConversation) => individualConversation.isArchived === true
+    );
+    const archivedGrConv = groupConversations.filter(
+      (groupConversation) => groupConversation.isArchived
+    );
+    const archivedConversations = archivedIndConv.concat(archivedGrConv);
     if (user) {
       return res.status(200).json({
         user,
