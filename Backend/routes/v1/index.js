@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const isLoggedIn = require("../../utils/isLoggedIn.js");
+const isLoggedIn = require("../../middlewares/authMiddleware.js");
 const handler = require("../../utils/upload.js");
 const {
   loginUser,
@@ -26,7 +26,7 @@ const {
 const { createMessage, deleteMessage } = require("../../controller/message.js");
 
 //For Uploading any Image
-router.post("/v1/upload", isLoggedIn, handler);
+router.post("/upload", isLoggedIn, handler);
 
 //User Route
 router.get("/user/:clientToken", isLoggedIn, getUserByToken);
@@ -38,7 +38,11 @@ router.post("/update/user/", isLoggedIn, updateUser);
 
 //Conversations Route
 router.post("/new/conversation", isLoggedIn, createConversation);
-router.delete("/delete/conversation/:senderId/:receiverId", isLoggedIn, deleteConversation);
+router.delete(
+  "/delete/conversation/:senderId/:receiverId",
+  isLoggedIn,
+  deleteConversation
+);
 
 //Group Route
 router.post("/new/group", isLoggedIn, createGroup);
@@ -53,4 +57,4 @@ router.delete("/delete/group/:groupId", isLoggedIn, deleteGroup);
 router.post("/new/message", isLoggedIn, createMessage);
 router.delete("/delete/message/:messageId", isLoggedIn, deleteMessage);
 
-module.exports = router
+module.exports = router;
